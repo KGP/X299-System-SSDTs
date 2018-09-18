@@ -6,7 +6,7 @@ SSDT-X299-HDEF.aml: onboard Realtek ALC S1220 HD Audio controller HDEF PCI imple
 
 SSDT-X299-ANS.aml: onboard NVME controller ANS1 and ANS2 PCI implementation
 
-SSDT-X299-PMC1.aml: onbaord PMC controller PCI implementation
+SSDT-X299-PMCR.aml: onbaord PMC controller PCI implementation
 
 SSDT-X299-SAT1.aml: onboard AHCI SATA controller PCI implementation
 
