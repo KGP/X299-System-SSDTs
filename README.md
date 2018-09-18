@@ -63,3 +63,8 @@ PIC_ -> IPIC  / 5049435F   /   49504943
 _DSM -> XDSM  / 5F44534D   /   5844534D
 
 SMBS._ADR -> XSBU.XADR  /  534D4253 085F4144 52   /   58534255 08584144 52
+
+
+Special thanks to Apfelnico and NMano for all substantial and always kind contributions. 
+
+Partial contributions by Mork vom Ork, Matthew82, Maleorderbridge and TheRacerMaster might also be mentioned for SSDT-X299-TB3HP.aml.  
