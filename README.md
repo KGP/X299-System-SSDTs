@@ -2,19 +2,19 @@
 
 # Collection of X299 System SSDTs for the ASUS Prime X299 Deluxe:
 
-SSDT-X299-HDEF.aml: Realtek ALC S1220 HD Audio onboard controller HDEF PCI implementation
+SSDT-X299-HDEF.aml: onboard Realtek ALC S1220 HD Audio controller HDEF PCI implementation
 
 SSDT-X299-ANS.aml: onboard NVME controller ANS1 and ANS2 PCI implementation
 
 SSDT-X299-PMC1.aml: onbaord PMC controller PCI implementation
 
-SSDT-X299-SAT1.aml: onbaord AHCI SATA controller PCI implementation
+SSDT-X299-SAT1.aml: onboard AHCI SATA controller PCI implementation
 
-SSDT-X299-THSS.aml: onbaord Thermal controller PCI implementation
+SSDT-X299-THSS.aml: onboard Thermal controller PCI implementation
 
-SSDT-X299-USB.aml: onbaord ASM1074, ASN3142#1, ASN3142#2 and ASN3142#3 XHC USB3.0 and USB3.1 extensible Host Controller PCI implementation 
+SSDT-X299-USB.aml: onboard ASM1074, ASN3142#1, ASN3142#2 and ASN3142#3 XHC USB3.0 and USB3.1 extensible Host Controller PCI implementations 
 
-SSDT-X299-ETH.aml: Intel I219V2 and I211VA 1GB NIC onabord controlller PCI implementation 
+SSDT-X299-ETH.aml: onboard Intel I219V2 and I211VA 1GB NIC controlller PCI implementation 
 
 SSDT-X299-Vega.aml: RX Radeon Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation
 
