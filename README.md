@@ -28,7 +28,7 @@ SSDT-X299-ACQU.aml: Acquantia AQC107-AFW 10GB NIC PCIe Slot-6 XGBE PCI implement
 
 SSDT-X299-X540-T1.aml: Intel X540-T1 10GB NIC PCIe Slot-6 XGBE PCI implementation
 
-SSDT-X299-P2EI0G-2T.aml: Smal-Tree P2EI0G-2T 10GB NIC PCIe Slot-6 XGBE and XGBF PCI implementations
+SSDT-X299-P2EI0G-2T.aml: Small-Tree P2EI0G-2T 10GB NIC PCIe Slot-6 XGBE and XGBF PCI implementations
 
 SSDT-DTPG.aml: DTPG PCI implementation (required for all SSDTs listed above)
 
