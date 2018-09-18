@@ -16,7 +16,7 @@ SSDT-X299-USBX.aml: Fixing USB Power Errors on system boot
 
 SSDT-X299-XHCI.aml: onboard ASM1074 USB3.0 extensible Host Controller XHCI PCI implementations
 
-SSDT-X299-XHCI.aml: onboard ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementations 
+SSDT-X299-XHC.aml: onboard ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementations 
 
 SSDT-X299-ETH.aml: onboard Intel I219V2 and I211VA 1GB NIC controlller PCI implementation 
 
