@@ -36,6 +36,7 @@ SSDT-X299-P2EI0G-2T.aml: Small-Tree P2EI0G-2T 10GB NIC PCIe Slot-6 XGBE and XGBF
 
 SSDT-DTPG.aml: DTPG PCI implementation (required for all SSDTs listed above)
 
+
 # Set of X299-SSDTS requires the following config.plist ACPI DSDT patch replacements:
 
 Comment:   /    Find*[HEX]  /  Replace[Hex]
@@ -65,6 +66,8 @@ _DSM -> XDSM  / 5F44534D   /   5844534D
 SMBS._ADR -> XSBU.XADR  /  534D4253 085F4144 52   /   58534255 08584144 52
 
 
-Special thanks to Apfelnico and NMano for all substantial and always kind contributions. 
+# Acknowledgements:
 
-Partial contributions by Mork vom Ork, Matthew82, Maleorderbridge and TheRacerMaster might also be mentioned for SSDT-X299-TB3HP.aml.  
+Special thanks to Apfelnico and NMano for all substantial and always kind contributions.
+
+Partial contributions of Mork vom Ork, Matthew82, Maleorderbridge, TheRacerMaster, Crismac2013 and LeleTuratti to SSDT-X299-TB3HP.aml might also be mentioned in addition.
