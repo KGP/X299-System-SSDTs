@@ -26,7 +26,9 @@ SSDT-X299-Nvidia.aml: Nvidia PCIe Slot-1 GFX0 and HDAU PCI implementation
 
 SSDT-X299-ARPT.aml: OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Slot-3 ARPT PCI implementation
 
-SSDT-X299-TB3HP.aml: Alpine Ridge/TBEX 3 TB3/TB-XHC-USB Slot-4 Hotplug Injector PCI implementation 
+SSDT-X299-TB3HP-TTR.aml: GC-Titan Ridge (ASUS TBEX 3) TB3/USB-C Hotplug Injector Slot-4 PCI implementation 
+
+SSDT-X299-TB3HP-APR.aml: GC-Alpine Ridge TB3/USB-C Hotplug Injector Slot-4 PCI implementation 
 
 SSDT-X299-ACQU.aml: Acquantia AQC107-AFW 10GB NIC PCIe Slot-6 XGBE PCI implementation
 
