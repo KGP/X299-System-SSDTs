@@ -5,6 +5,12 @@ set -e
 export PATH=${PATH}:/usr/local/bin
 export LC_ALL="en_US.UTF-8"
 
+patched_dir="/Volumes/EFI/EFI/CLOVER/ACPI/patched"
+if [ ! -d "${patched_dir}" ]; then
+    echo "Please ensure that you've mounted your EFI partition before running this command"
+    exit 1
+fi
+
 function checkInstalledOrInstall {
   local name=$1
   local check=$2
@@ -39,14 +45,10 @@ function checkInstalledOrFail {
 echo "--- 🕵  Checking for and installing required dependencies"
 
 checkInstalledOrFail "Homebrew" "$(which brew)" "--- 🚫  Stopping. Homebrew could not be found! Please install it from http://brew.sh"
-checkInstalledOrInstall "acpica" "$(which acpica)" "brew install acpica --quiet"
+checkInstalledOrInstall "acpica" "$(brew ls --versions acpica)" "brew install acpica --quiet"
 
-echo "--- 📁  Creating output build directory"
+echo "--- 🛠  Decompiling AMLs to DSL"
 
-mkdir -p Build
+find "$patched_dir" -name "*.aml" -type f -not -name "\._*" -exec sh -c 'f=$(basename $0 .aml); iasl -d -p "Sources/$f.dsl" "$0"' {} \;
 
-echo "--- 🛠  Compiling DSLs to AML"
-
-find . -name "*.dsl" -type f -exec sh -c 'f=$(basename $0 .dsl); iasl -p "Build/$f.aml" "$f.dsl"' {} \;
-
-echo "--- ✅  Done! Copy the AML files required from within the 'Build' directory"
+echo "--- ✅  Done! Decompiled DSL files have been updated in the 'Sources' directory"
