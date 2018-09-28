@@ -39,14 +39,10 @@ function checkInstalledOrFail {
 echo "--- 🕵  Checking for and installing required dependencies"
 
 checkInstalledOrFail "Homebrew" "$(which brew)" "--- 🚫  Stopping. Homebrew could not be found! Please install it from http://brew.sh"
-checkInstalledOrInstall "acpica" "$(which acpica)" "brew install acpica --quiet"
-
-echo "--- 📁  Creating output build directory"
-
-mkdir -p Build
+checkInstalledOrInstall "acpica" "$(brew ls --versions acpica)" "brew install acpica --quiet"
 
 echo "--- 🛠  Compiling DSLs to AML"
 
-find . -name "*.dsl" -type f -exec sh -c 'f=$(basename $0 .dsl); iasl -p "Build/$f.aml" "$f.dsl"' {} \;
+find Sources -name "*.dsl" -type f -exec sh -c 'f=$(basename $0 .dsl); iasl -p "Distribution/$f.aml" "$0"' {} \;
 
-echo "--- ✅  Done! Copy the AML files required from within the 'Build' directory"
+echo "--- ✅  Done! Copy the AML files required from within the 'Distribution' directory"

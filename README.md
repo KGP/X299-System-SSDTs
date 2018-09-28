@@ -2,10 +2,10 @@
 
 ## Instructions
 
-1. Make any required changes to the ra.dsl files;
-2. Run `Build.command` by double-clicking, or by running in your terminal;
+1. Make any required changes to the .dsl files;
+2. Run `Compile.command` by double-clicking, or by running in your terminal;
 
-You will find the compiled, ready-to-use AML files under "Build".
+You will find the compiled, ready-to-use AML files under "Distribution".
 
 ## SSDTs
 
