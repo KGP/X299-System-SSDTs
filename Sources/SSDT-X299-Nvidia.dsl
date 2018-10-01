@@ -40,14 +40,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "X299NVID", 0x00000000)
         Device (GFX0)
         {
             Name (_ADR, Zero)  // _ADR: Address
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (Package (0x02)
-                {
-                    0x69, 
-                    0x03
-                })
-            }
 
             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
@@ -121,14 +113,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "X299NVID", 0x00000000)
         Device (HDAU)
         {
             Name (_ADR, One)  // _ADR: Address
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (Package (0x02)
-                {
-                    0x69, 
-                    0x03
-                })
-            }
 
             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {

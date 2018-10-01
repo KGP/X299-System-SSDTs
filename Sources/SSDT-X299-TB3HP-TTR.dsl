@@ -26,64 +26,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
     External (_SB_.PC01.BR1A.SL01, DeviceObj)
     External (DTGP, MethodObj)    // 5 Arguments
 
-    OperationRegion (GNVS, SystemMemory, 0x4FEE6918, 0x0403)
-    Field (GNVS, AnyAcc, Lock, Preserve)
-    {
-        OSYS,   16
-    }
-
-    Method (OSDW, 0, NotSerialized)
-    {
-        Return (One)
-    }
-
-    Method (PINI, 0, NotSerialized)
-    {
-        OSYS = 0x07DC
-        If (XOSI ("Darwin"))
-        {
-            OSYS = 0x2710
-        }
-        ElseIf (XOSI ("Linux"))
-        {
-            OSYS = 0x03E8
-        }
-        ElseIf (XOSI ("Windows 2009"))
-        {
-            OSYS = 0x07D9
-        }
-        ElseIf (XOSI ("Windows 2012"))
-        {
-            OSYS = 0x07DC
-        }
-        Else
-        {
-            OSYS = 0x07DC
-        }
-    }
-
-    Method (XOSI, 1, NotSerialized)
-    {
-        Local0 = Package (0x0E)
-            {
-                "Darwin", 
-                "Linux", 
-                "Windows", 
-                "Windows 2001", 
-                "Windows 2001 SP2", 
-                "Windows 2001.1", 
-                "Windows 2001.1 SP1", 
-                "Windows 2006", 
-                "Windows 2006 SP1", 
-                "Windows 2006.1", 
-                "Windows 2009", 
-                "Windows 2012", 
-                "Windows 2013", 
-                "Windows 2015"
-            }
-        Return ((Ones != Match (Local0, MEQ, Arg0, MTR, Zero, Zero)))
-    }
-
     Scope (_SB.PC01.BR1A)
     {
         Scope (SL01)
@@ -98,7 +40,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
         {
-            Return (Zero)
+            Return (One)
         }
 
         Device (UPSB)
@@ -139,7 +81,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
             {
-                Return (Zero)
+                Return (One)
             }
 
             Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
@@ -209,7 +151,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                 {
-                    Return (Zero)
+                    Return (One)
                 }
 
                 Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
@@ -247,7 +189,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     Name (_STR, Unicode ("Thunderbolt"))  // _STR: Description String
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
-                        Return (Zero)
+                        Return (One)
                     }
 
                     OperationRegion (A1E0, PCI_Config, Zero, 0x40)
@@ -438,7 +380,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                 {
-                    Return (Zero)
+                    Return (One)
                 }
 
                 Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
@@ -481,12 +423,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
-                        If (OSDW ())
-                        {
-                            Return (One)
-                        }
-
-                        Return (Zero)
+                        Return (One)
                     }
 
                     Device (DSB0)
@@ -521,12 +458,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (DEV0)
@@ -539,12 +471,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                             {
-                                If (OSDW ())
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
+                                Return (One)
                             }
                         }
                     }
@@ -578,12 +505,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (UPS0)
@@ -597,12 +519,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                             {
-                                If (OSDW ())
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
+                                Return (One)
                             }
 
                             Device (DSB0)
@@ -674,12 +591,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -692,12 +604,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -732,12 +639,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -750,12 +652,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -789,12 +686,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
 
@@ -827,12 +719,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
                         }
@@ -867,12 +754,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (UPS0)
@@ -886,12 +768,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                             {
-                                If (OSDW ())
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
+                                Return (One)
                             }
 
                             Device (DSB0)
@@ -934,12 +811,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -973,12 +845,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -991,12 +858,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -1030,12 +892,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -1048,12 +905,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -1087,12 +939,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
 
@@ -1125,12 +972,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
                         }
@@ -1165,12 +1007,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
                     }
 
@@ -1203,12 +1040,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
                     }
                 }
@@ -1252,7 +1084,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                 {
-                    Return (Zero)
+                    Return (One)
                 }
 
                 Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
@@ -1348,7 +1180,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         Name (_ADR, Zero)  // _ADR: Address
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (SSP1)
@@ -1592,7 +1424,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                 {
-                    Return (Zero)
+                    Return (One)
                 }
 
                 Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
@@ -1635,12 +1467,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
-                        If (OSDW ())
-                        {
-                            Return (One)
-                        }
-
-                        Return (Zero)
+                        Return (One)
                     }
 
                     Device (DSB0)
@@ -1675,12 +1502,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (DEV0)
@@ -1693,12 +1515,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                             {
-                                If (OSDW ())
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
+                                Return (One)
                             }
                         }
                     }
@@ -1732,12 +1549,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (UPS0)
@@ -1751,12 +1563,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                             {
-                                If (OSDW ())
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
+                                Return (One)
                             }
 
                             Device (DSB0)
@@ -1828,12 +1635,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -1846,12 +1648,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -1885,12 +1682,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -1903,12 +1695,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -1942,12 +1729,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
 
@@ -1980,12 +1762,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
                         }
@@ -2020,12 +1797,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
 
                         Device (UPS0)
@@ -2039,12 +1811,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                             {
-                                If (OSDW ())
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
+                                Return (One)
                             }
 
                             Device (DSB0)
@@ -2087,12 +1854,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -2126,12 +1888,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -2144,12 +1901,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -2183,12 +1935,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
 
                                 Device (DEV0)
@@ -2201,12 +1948,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                     {
-                                        If (OSDW ())
-                                        {
-                                            Return (One)
-                                        }
-
-                                        Return (Zero)
+                                        Return (One)
                                     }
                                 }
                             }
@@ -2240,12 +1982,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
 
@@ -2278,12 +2015,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                                 Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                                 {
-                                    If (OSDW ())
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Return (Zero)
+                                    Return (One)
                                 }
                             }
                         }
@@ -2318,12 +2050,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
                     }
 
@@ -2356,12 +2083,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                         {
-                            If (OSDW ())
-                            {
-                                Return (One)
-                            }
-
-                            Return (Zero)
+                            Return (One)
                         }
                     }
                 }

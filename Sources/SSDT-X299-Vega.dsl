@@ -406,15 +406,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "X299VEGA", 0x00000000)
                         DID0,   16
                     }
 
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        Return (Package (0x02)
-                        {
-                            0x69, 
-                            0x03
-                        })
-                    }
-
                     Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                     {
                         Local0 = Package (0x16)
