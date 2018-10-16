@@ -2,10 +2,11 @@
 
 ## Instructions
 
-1. Make any required changes to the .dsl files;
-2. Run `Compile.command` by double-clicking, or by running in your terminal;
+In general it is recommended to directly use or modify/adopt the ready-to-use AML files under "Distribution".
 
-You will find the compiled, ready-to-use AML files under "Distribution".
+However it is also possible to downlaod a DSL version of the respective AML files under "Source"
+and to subseqeuntly execute the `Compile.command` from terminal; However, compilation errors (DSL to AML conversion errors) induced by the MaciASL compiler cannot be excluded in this case. 
+
 
 ## SSDTs
 
@@ -13,24 +14,24 @@ Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 
 | DSL File | Description |
 | :------- | :---------- |
-| `SSDT-X299-HDEF.dsl` | On-board Realtek ALC S1220 HD Audio controller HDEF PCI implementation |
-| `SSDT-X299-ANS.dsl` | On-board NVME controller ANS1 and ANS2 PCI implementation |
-| `SSDT-X299-PMCR.dsl` | On-board PMC controller PCI implementation |
-| `SSDT-X299-SAT1.dsl` | On-board AHCI SATA controller PCI implementation |
-| `SSDT-X299-THSS.dsl` | On-board Thermal controller PCI implementation |
-| `SSDT-X299-USBX.dsl` | Fixes USB Power Errors during system boot |
-| `SSDT-X299-XHCI.dsl` | On-board ASM1074 USB3.0 extensible Host Controller XHCI PCI implementations |
-| `SSDT-X299-XHC.dsl` | On-board ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementations |
-| `SSDT-X299-ETH.dsl` | On-board Intel I219V2 and I211VA 1GB NIC controlller PCI implementation |
-| `SSDT-X299-Vega.dsl` | RX Radeon Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation |
-| `SSDT-X299-Nvidia.dsl` | Nvidia PCIe Slot-1 GFX0 and HDAU PCI implementation |
-| `SSDT-X299-ARPT.dsl` | OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Slot-3 ARPT PCI implementation |
-| `SSDT-X299-TB3HP-TTR.dsl` | GC-Titan Ridge (ASUS TBEX 3) TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
-| `SSDT-X299-TB3HP-APR.dsl` | GC-Alpine Ridge TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
-| `SSDT-X299-ACQU.dsl` | Acquantia AQC107-AFW 10GB NIC PCIe Slot-6 XGBE PCI implementation |
-| `SSDT-X299-X540-T1.dsl` | Intel X540-T1 10GB NIC PCIe Slot-6 XGBE PCI implementation |
-| `SSDT-X299-P2EI0G-2T.dsl` | Small-Tree P2EI0G-2T 10GB NIC PCIe Slot-6 XGBE and XGBF PCI implementations |
-| `SSDT-DTPG.dsl` | DTPG PCI implementation (required for all `SSDTs` listed above) |
+| `SSDT-X299-HDEF.aml` | On-board Realtek ALC S1220 HD Audio controller HDEF PCI implementation |
+| `SSDT-X299-ANS.aml` | On-board NVME controller ANS1 and ANS2 PCI implementation |
+| `SSDT-X299-PMCR.aml` | On-board PMC controller PCI implementation |
+| `SSDT-X299-SAT1.aml` | On-board AHCI SATA controller PCI implementation |
+| `SSDT-X299-THSS.aml` | On-board Thermal controller PCI implementation |
+| `SSDT-X299-USBX.aml` | Fixes USB Power Errors during system boot |
+| `SSDT-X299-XHCI.aml` | On-board ASM1074 USB3.0 extensible Host Controller XHCI PCI implementations |
+| `SSDT-X299-XHC.aml` | On-board ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementations |
+| `SSDT-X299-ETH.aml` | On-board Intel I219V2 and I211VA 1GB NIC controlller PCI implementation |
+| `SSDT-X299-Vega.aml` | RX Radeon Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation |
+| `SSDT-X299-Nvidia.aml` | Nvidia PCIe Slot-1 GFX0 and HDAU PCI implementation |
+| `SSDT-X299-ARPT.aml` | OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Slot-3 ARPT PCI implementation |
+| `SSDT-X299-TB3HP-TTR.aml` | GC-Titan Ridge (ASUS TBEX 3) TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
+| `SSDT-X299-TB3HP-APR.aml` | GC-Alpine Ridge TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
+| `SSDT-X299-ACQU.aml` | Acquantia AQC107-AFW 10GB NIC PCIe Slot-6 XGBE PCI implementation |
+| `SSDT-X299-X540-T1.aml` | Intel X540-T1 10GB NIC PCIe Slot-6 XGBE PCI implementation |
+| `SSDT-X299-P2EI0G-2T.aml` | Small-Tree P2EI0G-2T 10GB NIC PCIe Slot-6 XGBE and XGBF PCI implementations |
+| `SSDT-DTPG.aml` | DTPG PCI implementation (required for all `SSDTs` listed above) |
 
 ## Required Patches
 
