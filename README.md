@@ -4,7 +4,7 @@
 
 In general it is recommended to directly use or modify/adopt the ready-to-use AML files under "Distribution".
 
-However it is also possible to downlaod a DSL version of the respective AML files under "Source"
+However it is also possible to downlaod a DSL version of the respective AML files under "Sources"
 and to subseqeuntly execute the `Compile.command` from terminal; However, compilation errors (DSL to AML conversion errors) induced by the MaciASL compiler cannot be excluded in this case. 
 
 
