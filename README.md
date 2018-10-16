@@ -26,8 +26,7 @@ Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 | `SSDT-X299-Vega.aml` | RX Radeon Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-Nvidia.aml` | Nvidia PCIe Slot-1 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-ARPT.aml` | OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Slot-3 ARPT PCI implementation |
-| `SSDT-X299-TB3HP-TTR.aml` | GC-Titan Ridge (ASUS TBEX 3) TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
-| `SSDT-X299-TB3HP-APR.aml` | GC-Alpine Ridge TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
+| `SSDT-X299-TB3HP.aml` | GC-Titan Ridge/GC-Alpine Ridge/ASUS TBEX 3 TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
 | `SSDT-X299-ACQU.aml` | Acquantia AQC107-AFW 10GB NIC PCIe Slot-6 XGBE PCI implementation |
 | `SSDT-X299-X540-T1.aml` | Intel X540-T1 10GB NIC PCIe Slot-6 XGBE PCI implementation |
 | `SSDT-X299-P2EI0G-2T.aml` | Small-Tree P2EI0G-2T 10GB NIC PCIe Slot-6 XGBE and XGBF PCI implementations |
