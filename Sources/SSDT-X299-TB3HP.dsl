@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-TB3HP.aml, Mon Oct 15 20:12:52 2018
+ * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-TB3HP.aml, Tue Oct 16 23:32:11 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x00001FD3 (8147)
+ *     Length           0x00002096 (8342)
  *     Revision         0x01
- *     Checksum         0xF6
+ *     Checksum         0xD6
  *     OEM ID           "KGP"
  *     OEM Table ID     "TB3HP"
  *     OEM Revision     0x00000000 (0)
@@ -1023,7 +1023,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                             })
                         }
 
-                        Local0 = Package (0x0C)
+                        Local0 = Package (0x0E)
                             {
                                 "AAPL,slot-name", 
                                 Buffer (0x07)
@@ -1056,12 +1056,26 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                 }, 
 
                                 "USBBusNumber", 
-                                Zero
+                                One, 
+                                "UsbCompanionControllerPresent", 
+                                One
                             }
                         DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
                         Return (Local0)
                     }
 
+                    Name (HS, Package (0x01)
+                    {
+                        "XHCI"
+                    })
+                    Name (FS, Package (0x01)
+                    {
+                        "XHCI"
+                    })
+                    Name (LS, Package (0x01)
+                    {
+                        "XHCI"
+                    })
                     Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                     {
                         Return (Package (0x02)
@@ -1076,7 +1090,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         Name (_ADR, Zero)  // _ADR: Address
                         Device (SSP1)
                         {
-                            Name (_ADR, One)  // _ADR: Address
+                            Name (_ADR, 0x03)  // _ADR: Address
                             Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
                             {
                                 0xFF, 
@@ -1113,6 +1127,21 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     PLD_Rotation           = 0x0,
                                     PLD_Order              = 0x0)
 
+                            })
+                            Name (HS, Package (0x02)
+                            {
+                                "XHCI", 
+                                One
+                            })
+                            Name (FS, Package (0x02)
+                            {
+                                "XHCI", 
+                                One
+                            })
+                            Name (LS, Package (0x02)
+                            {
+                                "XHCI", 
+                                One
                             })
                             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                             {
@@ -1124,9 +1153,11 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     })
                                 }
 
-                                Local0 = Package (0x02)
+                                Local0 = Package (0x04)
                                     {
                                         "UsbCPortNumber", 
+                                        One, 
+                                        "UsbCompanionPortPresent", 
                                         One
                                     }
                                 DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
@@ -1136,7 +1167,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
 
                         Device (SSP2)
                         {
-                            Name (_ADR, 0x02)  // _ADR: Address
+                            Name (_ADR, 0x04)  // _ADR: Address
                             Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
                             {
                                 0xFF, 
@@ -1173,6 +1204,21 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     PLD_Rotation           = 0x0,
                                     PLD_Order              = 0x0)
 
+                            })
+                            Name (HS, Package (0x02)
+                            {
+                                "XHCI", 
+                                0x02
+                            })
+                            Name (FS, Package (0x02)
+                            {
+                                "XHCI", 
+                                0x02
+                            })
+                            Name (LS, Package (0x02)
+                            {
+                                "XHCI", 
+                                0x02
                             })
                             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                             {
