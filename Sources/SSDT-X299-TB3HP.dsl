@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-TB3HP.aml, Tue Oct 16 23:32:11 2018
+ * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-TB3HP.aml, Thu Oct 18 08:48:42 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
  *     Length           0x00002096 (8342)
  *     Revision         0x01
- *     Checksum         0xD6
+ *     Checksum         0xD9
  *     OEM ID           "KGP"
  *     OEM Table ID     "TB3HP"
  *     OEM Revision     0x00000000 (0)
@@ -202,7 +202,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                             })
                         }
 
-                        Local0 = Package (0x10)
+                        Local0 = Package (0x0D)
                             {
                                 "AAPL,slot-name", 
                                 Buffer (0x07)
