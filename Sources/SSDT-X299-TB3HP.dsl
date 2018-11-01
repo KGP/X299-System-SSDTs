@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-TB3HP.aml, Thu Oct 18 08:48:42 2018
+ * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-TB3HP.aml, Thu Nov  1 16:40:07 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x00002096 (8342)
+ *     Length           0x00001902 (6402)
  *     Revision         0x01
- *     Checksum         0xD9
+ *     Checksum         0x41
  *     OEM ID           "KGP"
  *     OEM Table ID     "TB3HP"
  *     OEM Revision     0x00000000 (0)
@@ -60,6 +60,15 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                 MABT,   1
             }
 
+            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            {
+                Return (Package (0x02)
+                {
+                    0x69, 
+                    0x03
+                })
+            }
+
             Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
             {
                 Return (SECB) /* \_SB_.PC01.BR1A.UPSB.SECB */
@@ -85,25 +94,23 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     })
                 }
 
-                Local0 = Package (0x06)
+                Return (Package (0x06)
+                {
+                    "AAPL,slot-name", 
+                    Buffer (0x09)
                     {
-                        "AAPL,slot-name", 
-                        Buffer (0x09)
-                        {
-                            "Built In"
-                        }, 
+                        "Built In"
+                    }, 
 
-                        "built-in", 
-                        Buffer (One)
-                        {
-                             0x00                                             // .
-                        }, 
+                    "built-in", 
+                    Buffer (One)
+                    {
+                         0x00                                             // .
+                    }, 
 
-                        "PCI-Thunderbolt", 
-                        One
-                    }
-                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                Return (Local0)
+                    "PCI-Thunderbolt", 
+                    One
+                })
             }
 
             Device (DSB0)
@@ -121,6 +128,15 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     Offset (0x1E), 
                         ,   13, 
                     MABT,   1
+                }
+
+                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                {
+                    Return (Package (0x02)
+                    {
+                        0x69, 
+                        0x03
+                    })
                 }
 
                 Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
@@ -148,25 +164,23 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         })
                     }
 
-                    Local0 = Package (0x06)
+                    Return (Package (0x06)
+                    {
+                        "AAPL,slot-name", 
+                        Buffer (0x09)
                         {
-                            "AAPL,slot-name", 
-                            Buffer (0x09)
-                            {
-                                "Built In"
-                            }, 
+                            "Built In"
+                        }, 
 
-                            "built-in", 
-                            Buffer (One)
-                            {
-                                 0x00                                             // .
-                            }, 
+                        "built-in", 
+                        Buffer (One)
+                        {
+                             0x00                                             // .
+                        }, 
 
-                            "PCIHotplugCapable", 
-                            One
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
+                        "PCIHotplugCapable", 
+                        One
+                    })
                 }
 
                 Device (NHI0)
@@ -192,6 +206,15 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         MABT,   1
                     }
 
+                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                    {
+                        Return (Package (0x02)
+                        {
+                            0x69, 
+                            0x03
+                        })
+                    }
+
                     Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                     {
                         If ((Arg2 == Zero))
@@ -202,7 +225,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                             })
                         }
 
-                        Local0 = Package (0x0D)
+                        Local0 = Package (0x1D)
                             {
                                 "AAPL,slot-name", 
                                 Buffer (0x07)
@@ -232,6 +255,75 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                 Buffer (0x26)
                                 {
                                     "GC-Titan Ridge Thunderbolt Controller"
+                                }, 
+
+                                "TBTDPLowToHigh", 
+                                Buffer (0x04)
+                                {
+                                     0x01, 0x00, 0x00, 0x00                           // ....
+                                }, 
+
+                                "pathcr", 
+                                Buffer (One)
+                                {
+                                    /* 0000 */  0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                                    /* 0008 */  0x00, 0x00, 0x07, 0x00, 0x10, 0x00, 0x10, 0x00,  // ........
+                                    /* 0010 */  0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                                    /* 0018 */  0x00, 0x00, 0x07, 0x00, 0x10, 0x00, 0x10, 0x00,  // ........
+                                    /* 0020 */  0x01, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x0E, 0x00,  // ........
+                                    /* 0028 */  0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                                    /* 0030 */  0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                                    /* 0038 */  0x00, 0x00, 0x04, 0x00, 0x02, 0x00, 0x01, 0x00,  // ........
+                                    /* 0040 */  0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                                    /* 0048 */  0x00, 0x00, 0x07, 0x00, 0x02, 0x00, 0x01, 0x00   // ........
+                                }, 
+
+                                "ThunderboltDROM", 
+                                Buffer (One)
+                                {
+                                    /* 0000 */  0x76, 0x00, 0xC1, 0x71, 0xC5, 0xBE, 0x49, 0x01,  // v..q..I.
+                                    /* 0008 */  0x00, 0x0A, 0x9B, 0x60, 0xFA, 0x01, 0x5E, 0x00,  // ...`..^.
+                                    /* 0010 */  0x01, 0x00, 0x0C, 0x00, 0x01, 0x00, 0x08, 0x81,  // ........
+                                    /* 0018 */  0x80, 0x02, 0x80, 0x00, 0x00, 0x00, 0x08, 0x82,  // ........
+                                    /* 0020 */  0x90, 0x01, 0x80, 0x00, 0x00, 0x00, 0x08, 0x83,  // ........
+                                    /* 0028 */  0x80, 0x04, 0x80, 0x01, 0x00, 0x00, 0x08, 0x84,  // ........
+                                    /* 0030 */  0x90, 0x03, 0x80, 0x01, 0x00, 0x00, 0x08, 0x85,  // ........
+                                    /* 0038 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x86,  // ........
+                                    /* 0040 */  0x20, 0x03, 0x87, 0x80, 0x02, 0xC8, 0x05, 0x89,  //  .......
+                                    /* 0048 */  0x50, 0x00, 0x00, 0x05, 0x8A, 0x50, 0x00, 0x00,  // P....P..
+                                    /* 0050 */  0x02, 0xCB, 0x0D, 0x01, 0x41, 0x70, 0x70, 0x6C,  // ....Appl
+                                    /* 0058 */  0x65, 0x20, 0x49, 0x6E, 0x63, 0x2E, 0x00, 0x0C,  // e Inc...
+                                    /* 0060 */  0x02, 0x4D, 0x61, 0x63, 0x69, 0x6E, 0x74, 0x6F,  // .Macinto
+                                    /* 0068 */  0x73, 0x68, 0x00                                 // sh.
+                                }, 
+
+                                "ThunderboltConfig", 
+                                Buffer (One)
+                                {
+                                    /* 0000 */  0x00, 0x02, 0xFF, 0xFF, 0x04, 0x00, 0x03, 0x01,  // ........
+                                    /* 0008 */  0x01, 0x00, 0x04, 0x00, 0x05, 0x01, 0x02, 0x00,  // ........
+                                    /* 0010 */  0x03, 0x00, 0x03, 0x01, 0x01, 0x00, 0x00, 0x00,  // ........
+                                    /* 0018 */  0x03, 0x01, 0x02, 0x00, 0x02, 0x00, 0x01, 0x00   // ........
+                                }, 
+
+                                "LinkDetails", 
+                                Buffer (0x08)
+                                {
+                                     0x08, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00   // ........
+                                }, 
+
+                                "ThunderboltUUID", 
+                                ToUUID ("95e6bcfa-5a4a-5f81-b3d2-f0e4bd35cf1e"), 
+                                "sscOffset", 
+                                Buffer (0x02)
+                                {
+                                     0x00, 0x00                                       // ..
+                                }, 
+
+                                "TBTFlags", 
+                                Buffer (0x04)
+                                {
+                                     0x03, 0x00, 0x00, 0x00                           // ....
                                 }, 
 
                                 "power-save", 
@@ -267,6 +359,15 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     MABT,   1
                 }
 
+                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                {
+                    Return (Package (0x02)
+                    {
+                        0x69, 
+                        0x03
+                    })
+                }
+
                 Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
                 {
                     Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB1.SECB */
@@ -292,22 +393,23 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         })
                     }
 
-                    Local0 = Package (0x04)
+                    Return (Package (0x06)
+                    {
+                        "AAPL,slot-name", 
+                        Buffer (0x07)
                         {
-                            "AAPL,slot-name", 
-                            Buffer (0x07)
-                            {
-                                "Slot-4"
-                            }, 
+                            "Slot-4"
+                        }, 
 
-                            "built-in", 
-                            Buffer (One)
-                            {
-                                 0x00                                             // .
-                            }
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
+                        "built-in", 
+                        Buffer (One)
+                        {
+                             0x00                                             // .
+                        }, 
+
+                        "Thunderbold Entry ID", 
+                        0x0491
+                    })
                 }
 
                 Device (UPS0)
@@ -961,6 +1063,15 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     MABT,   1
                 }
 
+                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                {
+                    Return (Package (0x02)
+                    {
+                        0x69, 
+                        0x03
+                    })
+                }
+
                 Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
                 {
                     Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB2.SECB */
@@ -986,33 +1097,18 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         })
                     }
 
-                    Local0 = Package (0x02)
-                        {
-                            "PCIHotplugCapable", 
-                            One
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
+                    Return (Package (0x04)
+                    {
+                        "PCIHotplugCapable", 
+                        One, 
+                        "IOPCIHPType", 
+                        0x02
+                    })
                 }
 
                 Device (XHC5)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Name (SDPC, Zero)
-                    OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                    Field (A1E0, ByteAcc, NoLock, Preserve)
-                    {
-                        AVND,   32, 
-                        BMIE,   3, 
-                        Offset (0x18), 
-                        PRIB,   8, 
-                        SECB,   8, 
-                        SUBB,   8, 
-                        Offset (0x1E), 
-                            ,   13, 
-                        MABT,   1
-                    }
-
                     Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                     {
                         If ((Arg2 == Zero))
@@ -1023,7 +1119,7 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                             })
                         }
 
-                        Local0 = Package (0x0E)
+                        Local0 = Package (0x14)
                             {
                                 "AAPL,slot-name", 
                                 Buffer (0x07)
@@ -1056,26 +1152,20 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                 }, 
 
                                 "USBBusNumber", 
-                                One, 
+                                Zero, 
                                 "UsbCompanionControllerPresent", 
-                                One
+                                One, 
+                                "AAPL,XHCI-clock-id", 
+                                One, 
+                                "IOPCIExpressCapabilites", 
+                                0x02, 
+                                "IOPCIHPType", 
+                                0x02
                             }
                         DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
                         Return (Local0)
                     }
 
-                    Name (HS, Package (0x01)
-                    {
-                        "XHCI"
-                    })
-                    Name (FS, Package (0x01)
-                    {
-                        "XHCI"
-                    })
-                    Name (LS, Package (0x01)
-                    {
-                        "XHCI"
-                    })
                     Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                     {
                         Return (Package (0x02)
@@ -1088,9 +1178,14 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     Device (RHUB)
                     {
                         Name (_ADR, Zero)  // _ADR: Address
+                        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
+                        {
+                            Return (Zero)
+                        }
+
                         Device (SSP1)
                         {
-                            Name (_ADR, 0x03)  // _ADR: Address
+                            Name (_ADR, One)  // _ADR: Address
                             Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
                             {
                                 0xFF, 
@@ -1128,21 +1223,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     PLD_Order              = 0x0)
 
                             })
-                            Name (HS, Package (0x02)
-                            {
-                                "XHCI", 
-                                One
-                            })
-                            Name (FS, Package (0x02)
-                            {
-                                "XHCI", 
-                                One
-                            })
-                            Name (LS, Package (0x02)
-                            {
-                                "XHCI", 
-                                One
-                            })
                             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                             {
                                 If ((Arg2 == Zero))
@@ -1153,21 +1233,17 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     })
                                 }
 
-                                Local0 = Package (0x04)
-                                    {
-                                        "UsbCPortNumber", 
-                                        One, 
-                                        "UsbCompanionPortPresent", 
-                                        One
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
+                                Return (Package (0x02)
+                                {
+                                    "UsbCPortNumber", 
+                                    One
+                                })
                             }
                         }
 
                         Device (SSP2)
                         {
-                            Name (_ADR, 0x04)  // _ADR: Address
+                            Name (_ADR, 0x02)  // _ADR: Address
                             Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
                             {
                                 0xFF, 
@@ -1205,21 +1281,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     PLD_Order              = 0x0)
 
                             })
-                            Name (HS, Package (0x02)
-                            {
-                                "XHCI", 
-                                0x02
-                            })
-                            Name (FS, Package (0x02)
-                            {
-                                "XHCI", 
-                                0x02
-                            })
-                            Name (LS, Package (0x02)
-                            {
-                                "XHCI", 
-                                0x02
-                            })
                             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                             {
                                 If ((Arg2 == Zero))
@@ -1230,15 +1291,11 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                                     })
                                 }
 
-                                Local0 = Package (0x04)
-                                    {
-                                        "UsbCPortNumber", 
-                                        One, 
-                                        "UsbCompanionPortPresent", 
-                                        One
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
+                                Return (Package (0x02)
+                                {
+                                    "UsbCPortNumber", 
+                                    0x02
+                                })
                             }
                         }
 
@@ -1329,738 +1386,6 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                 }
             }
 
-            Device (DSB3)
-            {
-                Name (_ADR, 0x00030000)  // _ADR: Address
-                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                Field (A1E0, ByteAcc, NoLock, Preserve)
-                {
-                    AVND,   32, 
-                    BMIE,   3, 
-                    Offset (0x18), 
-                    PRIB,   8, 
-                    SECB,   8, 
-                    SUBB,   8, 
-                    Offset (0x1E), 
-                        ,   13, 
-                    MABT,   1
-                }
-
-                OperationRegion (A1E1, PCI_Config, 0xC0, 0x40)
-                Field (A1E1, ByteAcc, NoLock, Preserve)
-                {
-                    Offset (0x01), 
-                    Offset (0x02), 
-                    Offset (0x04), 
-                    Offset (0x08), 
-                    Offset (0x0A), 
-                        ,   5, 
-                    TPEN,   1, 
-                    Offset (0x0C), 
-                    SSPD,   4, 
-                        ,   16, 
-                    LACR,   1, 
-                    Offset (0x10), 
-                        ,   4, 
-                    LDIS,   1, 
-                    LRTN,   1, 
-                    Offset (0x12), 
-                    CSPD,   4, 
-                    CWDT,   6, 
-                        ,   1, 
-                    LTRN,   1, 
-                        ,   1, 
-                    LACT,   1, 
-                    Offset (0x14), 
-                    Offset (0x30), 
-                    TSPD,   4
-                }
-
-                OperationRegion (A1E2, PCI_Config, 0x80, 0x08)
-                Field (A1E2, ByteAcc, NoLock, Preserve)
-                {
-                    Offset (0x01), 
-                    Offset (0x02), 
-                    Offset (0x04), 
-                    PSTA,   2
-                }
-
-                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                {
-                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.SECB */
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    Return (0x0F)
-                }
-
-                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                {
-                    Return (Zero)
-                }
-
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    If (!Arg2)
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x03                                             // .
-                        })
-                    }
-
-                    Local0 = Package (0x04)
-                        {
-                            "AAPL,slot-name", 
-                            Buffer (0x07)
-                            {
-                                "Slot-4"
-                            }, 
-
-                            "built-in", 
-                            Buffer (One)
-                            {
-                                 0x00                                             // .
-                            }
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
-                }
-
-                Device (UPS0)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    OperationRegion (ARE0, PCI_Config, Zero, 0x04)
-                    Field (ARE0, ByteAcc, NoLock, Preserve)
-                    {
-                        AVND,   16
-                    }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (Zero)
-                    }
-
-                    Device (DSB0)
-                    {
-                        Name (_ADR, Zero)  // _ADR: Address
-                        OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                        Field (A1E0, ByteAcc, NoLock, Preserve)
-                        {
-                            AVND,   32, 
-                            BMIE,   3, 
-                            Offset (0x18), 
-                            PRIB,   8, 
-                            SECB,   8, 
-                            SUBB,   8, 
-                            Offset (0x1E), 
-                                ,   13, 
-                            MABT,   1, 
-                            Offset (0x3E), 
-                                ,   6, 
-                            SBRS,   1
-                        }
-
-                        Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                        {
-                            Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB0.SECB */
-                        }
-
-                        Method (_STA, 0, NotSerialized)  // _STA: Status
-                        {
-                            Return (0x0F)
-                        }
-
-                        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                        {
-                            Return (Zero)
-                        }
-
-                        Device (DEV0)
-                        {
-                            Name (_ADR, Zero)  // _ADR: Address
-                            Method (_STA, 0, NotSerialized)  // _STA: Status
-                            {
-                                Return (0x0F)
-                            }
-
-                            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                            {
-                                Return (Zero)
-                            }
-                        }
-                    }
-
-                    Device (DSB3)
-                    {
-                        Name (_ADR, 0x00030000)  // _ADR: Address
-                        OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                        Field (A1E0, ByteAcc, NoLock, Preserve)
-                        {
-                            AVND,   32, 
-                            BMIE,   3, 
-                            Offset (0x18), 
-                            PRIB,   8, 
-                            SECB,   8, 
-                            SUBB,   8, 
-                            Offset (0x1E), 
-                                ,   13, 
-                            MABT,   1
-                        }
-
-                        Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                        {
-                            Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB3.SECB */
-                        }
-
-                        Method (_STA, 0, NotSerialized)  // _STA: Status
-                        {
-                            Return (0x0F)
-                        }
-
-                        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                        {
-                            Return (Zero)
-                        }
-
-                        Device (UPS0)
-                        {
-                            Name (_ADR, Zero)  // _ADR: Address
-                            OperationRegion (ARE0, PCI_Config, Zero, 0x04)
-                            Field (ARE0, ByteAcc, NoLock, Preserve)
-                            {
-                                AVND,   16
-                            }
-
-                            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                            {
-                                Return (Zero)
-                            }
-
-                            Device (DSB0)
-                            {
-                                Name (_ADR, Zero)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1, 
-                                    Offset (0x3E), 
-                                        ,   6, 
-                                    SBRS,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB3.UPS0.DSB0.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Device (DEV0)
-                                {
-                                    Name (_ADR, Zero)  // _ADR: Address
-                                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                                    {
-                                        Return (0x0F)
-                                    }
-                                }
-                            }
-
-                            Device (DSB3)
-                            {
-                                Name (_ADR, 0x00030000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB3.UPS0.DSB3.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-
-                                Device (DEV0)
-                                {
-                                    Name (_ADR, Zero)  // _ADR: Address
-                                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                                    {
-                                        Return (0x0F)
-                                    }
-
-                                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-
-                            Device (DSB4)
-                            {
-                                Name (_ADR, 0x00040000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB3.UPS0.DSB4.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-
-                                Device (DEV0)
-                                {
-                                    Name (_ADR, Zero)  // _ADR: Address
-                                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                                    {
-                                        Return (0x0F)
-                                    }
-
-                                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-
-                            Device (DSB5)
-                            {
-                                Name (_ADR, 0x00050000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB3.UPS0.DSB5.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-                            }
-
-                            Device (DSB6)
-                            {
-                                Name (_ADR, 0x00060000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB3.UPS0.DSB6.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-                            }
-                        }
-                    }
-
-                    Device (DSB4)
-                    {
-                        Name (_ADR, 0x00040000)  // _ADR: Address
-                        OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                        Field (A1E0, ByteAcc, NoLock, Preserve)
-                        {
-                            AVND,   32, 
-                            BMIE,   3, 
-                            Offset (0x18), 
-                            PRIB,   8, 
-                            SECB,   8, 
-                            SUBB,   8, 
-                            Offset (0x1E), 
-                                ,   13, 
-                            MABT,   1
-                        }
-
-                        Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                        {
-                            Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB4.SECB */
-                        }
-
-                        Method (_STA, 0, NotSerialized)  // _STA: Status
-                        {
-                            Return (0x0F)
-                        }
-
-                        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                        {
-                            Return (Zero)
-                        }
-
-                        Device (UPS0)
-                        {
-                            Name (_ADR, Zero)  // _ADR: Address
-                            OperationRegion (ARE0, PCI_Config, Zero, 0x04)
-                            Field (ARE0, ByteAcc, NoLock, Preserve)
-                            {
-                                AVND,   16
-                            }
-
-                            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                            {
-                                Return (Zero)
-                            }
-
-                            Device (DSB0)
-                            {
-                                Name (_ADR, Zero)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1, 
-                                    Offset (0x3E), 
-                                        ,   6, 
-                                    SBRS,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB4.UPS0.DSB0.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Device (DEV0)
-                                {
-                                    Name (_ADR, Zero)  // _ADR: Address
-                                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                                    {
-                                        Return (0x0F)
-                                    }
-
-                                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-
-                            Device (DSB3)
-                            {
-                                Name (_ADR, 0x00030000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB4.UPS0.DSB3.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-
-                                Device (DEV0)
-                                {
-                                    Name (_ADR, Zero)  // _ADR: Address
-                                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                                    {
-                                        Return (0x0F)
-                                    }
-
-                                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-
-                            Device (DSB4)
-                            {
-                                Name (_ADR, 0x00040000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB4.UPS0.DSB4.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-
-                                Device (DEV0)
-                                {
-                                    Name (_ADR, Zero)  // _ADR: Address
-                                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                                    {
-                                        Return (0x0F)
-                                    }
-
-                                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-
-                            Device (DSB5)
-                            {
-                                Name (_ADR, 0x00050000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB4.UPS0.DSB5.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-                            }
-
-                            Device (DSB6)
-                            {
-                                Name (_ADR, 0x00060000)  // _ADR: Address
-                                OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                                Field (A1E0, ByteAcc, NoLock, Preserve)
-                                {
-                                    AVND,   32, 
-                                    BMIE,   3, 
-                                    Offset (0x18), 
-                                    PRIB,   8, 
-                                    SECB,   8, 
-                                    SUBB,   8, 
-                                    Offset (0x1E), 
-                                        ,   13, 
-                                    MABT,   1
-                                }
-
-                                Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                                {
-                                    Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB4.UPS0.DSB6.SECB */
-                                }
-
-                                Method (_STA, 0, NotSerialized)  // _STA: Status
-                                {
-                                    Return (0x0F)
-                                }
-
-                                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                                {
-                                    Return (Zero)
-                                }
-                            }
-                        }
-                    }
-
-                    Device (DSB5)
-                    {
-                        Name (_ADR, 0x00050000)  // _ADR: Address
-                        OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                        Field (A1E0, ByteAcc, NoLock, Preserve)
-                        {
-                            AVND,   32, 
-                            BMIE,   3, 
-                            Offset (0x18), 
-                            PRIB,   8, 
-                            SECB,   8, 
-                            SUBB,   8, 
-                            Offset (0x1E), 
-                                ,   13, 
-                            MABT,   1
-                        }
-
-                        Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                        {
-                            Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB5.SECB */
-                        }
-
-                        Method (_STA, 0, NotSerialized)  // _STA: Status
-                        {
-                            Return (0x0F)
-                        }
-
-                        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (DSB6)
-                    {
-                        Name (_ADR, 0x00060000)  // _ADR: Address
-                        OperationRegion (A1E0, PCI_Config, Zero, 0x40)
-                        Field (A1E0, ByteAcc, NoLock, Preserve)
-                        {
-                            AVND,   32, 
-                            BMIE,   3, 
-                            Offset (0x18), 
-                            PRIB,   8, 
-                            SECB,   8, 
-                            SUBB,   8, 
-                            Offset (0x1E), 
-                                ,   13, 
-                            MABT,   1
-                        }
-
-                        Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-                        {
-                            Return (SECB) /* \_SB_.PC01.BR1A.UPSB.DSB3.UPS0.DSB6.SECB */
-                        }
-
-                        Method (_STA, 0, NotSerialized)  // _STA: Status
-                        {
-                            Return (0x0F)
-                        }
-
-                        Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                        {
-                            Return (Zero)
-                        }
-                    }
-                }
-            }
-
             Device (DSB4)
             {
                 Name (_ADR, 0x00040000)  // _ADR: Address
@@ -2076,6 +1401,15 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                     Offset (0x1E), 
                         ,   13, 
                     MABT,   1
+                }
+
+                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                {
+                    Return (Package (0x02)
+                    {
+                        0x69, 
+                        0x03
+                    })
                 }
 
                 Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
@@ -2103,22 +1437,23 @@ DefinitionBlock ("", "SSDT", 1, "KGP", "TB3HP", 0x00000000)
                         })
                     }
 
-                    Local0 = Package (0x04)
+                    Return (Package (0x06)
+                    {
+                        "AAPL,slot-name", 
+                        Buffer (0x07)
                         {
-                            "AAPL,slot-name", 
-                            Buffer (0x07)
-                            {
-                                "Slot-4"
-                            }, 
+                            "Slot-4"
+                        }, 
 
-                            "built-in", 
-                            Buffer (One)
-                            {
-                                 0x00                                             // .
-                            }
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
+                        "built-in", 
+                        Buffer (One)
+                        {
+                             0x00                                             // .
+                        }, 
+
+                        "Thunderbold Entry ID", 
+                        0x0490
+                    })
                 }
 
                 Device (UPS0)
