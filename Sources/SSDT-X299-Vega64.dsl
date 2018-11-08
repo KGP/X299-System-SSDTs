@@ -5,18 +5,18 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of ./SSDT-X299-Vega.aml, Thu Sep 27 14:54:54 2018
+ * Disassembly of /Volumes/EFI/EFI/CLOVER/ACPI/patched/SSDT-X299-Vega64.aml, Thu Nov  8 13:17:31 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x00000895 (2197)
+ *     Length           0x00000886 (2182)
  *     Revision         0x01
- *     Checksum         0x81
+ *     Checksum         0x6A
  *     OEM ID           "KGP"
  *     OEM Table ID     "X299VEGA"
  *     OEM Revision     0x00000000 (0)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20180427 (538444839)
+ *     Compiler Version 0x20180810 (538445840)
  */
 DefinitionBlock ("", "SSDT", 1, "KGP", "X299VEGA", 0x00000000)
 {
