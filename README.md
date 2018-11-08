@@ -17,7 +17,7 @@ and to subseqeuntly execute the `Compile.command` from terminal; However, compil
 
 Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 
-| DSL File | Description |
+| AML File | Description |
 | :------- | :---------- |
 | `SSDT-X299-HDEF.aml` | On-board Realtek ALC S1220 HD Audio controller HDEF PCI implementation |
 | `SSDT-X299-ANS.aml` | On-board NVME controller ANS1 and ANS2 PCI implementation |
@@ -25,8 +25,8 @@ Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 | `SSDT-X299-SAT1.aml` | On-board AHCI SATA controller PCI implementation |
 | `SSDT-X299-THSS.aml` | On-board Thermal controller PCI implementation |
 | `SSDT-X299-USBX.aml` | Fixes USB Power Errors during system boot |
-| `SSDT-X299-XHCI.aml` | On-board ASM1074 USB3.0 extensible Host Controller XHCI PCI implementations |
-| `SSDT-X299-XHC.aml` | On-board ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementations |
+| `SSDT-X299-XHCI.aml` | On-board ASM1074 USB3.0 extensible Host Controller XHCI PCI implementation |
+| `SSDT-X299-XHC.aml` | On-board ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementation |
 | `SSDT-X299-ETH.aml` | On-board Intel I219V2 and I211VA 1GB NIC controlller PCI implementation |
 | `SSDT-X299-Vega-Frontier.aml` | AMD Radeon RX Vega Frontier PCIe Slot-1 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-Vega64.aml` | AMD Radeon RX Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation (Sapphire Nitro+ RX Vega 64)  |
@@ -43,7 +43,7 @@ Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 
 ## Required Patches
 
-The `SSDTS` above require the following `config.plist` ACPI DSDT patch replacements.
+The `SSDTs` above require the following `config.plist` ACPI DSDT patch replacements.
 
 | Comment | Find [HEX] | Replace [Hex] |
 | :------ | :--------- | :----------- |
