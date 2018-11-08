@@ -2,6 +2,11 @@
 
 ## Instructions
 
+This X299 System SSDT Github repositiry constitues a set of mainbaord and PCIe-Slot specific system SSDTs for the ASUS Prime X299 Deluxe. Users of different mainbaords and/or different PCIe-Slot populations have to adopt at least the ACPI path and ACPI replacments implmented in each specfic file. 
+
+How to do so, is explained wihtin this small and basic guideline:
+http://kgp-hackintosh-corner.com/how-to-create-or-modify-a-simple-system-ssdt-aml-by-means-of-dsdt-and-ioreg-acpi-information
+
 In general it is recommended to directly use or modify/adopt the ready-to-use AML files under "Distribution".
 
 However it is also possible to downlaod a DSL version of the respective AML files under "Sources"
@@ -23,9 +28,11 @@ Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 | `SSDT-X299-XHCI.aml` | On-board ASM1074 USB3.0 extensible Host Controller XHCI PCI implementations |
 | `SSDT-X299-XHC.aml` | On-board ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementations |
 | `SSDT-X299-ETH.aml` | On-board Intel I219V2 and I211VA 1GB NIC controlller PCI implementation |
-| `SSDT-X299-Vega.aml` | AMD Radeon RX Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation (Sapphire Nitro+ RX Vega 64)  |
+| `SSDT-X299-Vega-Frontier.aml` | AMD Radeon RX Vega Frontier PCIe Slot-1 GFX0 and HDAU PCI implementation |
+| `SSDT-X299-Vega64.aml` | AMD Radeon RX Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation (Sapphire Nitro+ RX Vega 64)  |
 | `SSDT-X299-Vega56.aml` | AMD Radeon RX Vega 56 PCIe Slot-1 GFX0 and HDAU PCI implementation (MSI RX VEGA 56 Air Boost OC |
 | `SSDT-X299-RX580.aml` | AMD Radeon RX 580 PCIe Slot-1 GFX0 and HDAU PCI implementation |
+| `SSDT-X299-RX560.aml` | AMD Radeon RX 560 PCIe Slot-1 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-Nvidia.aml` | Nvidia PCIe Slot-1 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-ARPT.aml` | OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Slot-3 ARPT PCI implementation |
 | `SSDT-X299-TB3HP.aml` | GC-Titan Ridge/GC-Alpine Ridge/ASUS TBEX 3 TB3/USB-C Hotplug Injector Slot-4 PCI implementation |
