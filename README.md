@@ -2,7 +2,7 @@
 
 ## Instructions
 
-This X299 System SSDT Github repository constitues a set of motherboard and PCIe-Slot specific system SSDTs for the ASUS Prime X299 Deluxe. Users of different motherboards and/or different PCIe-Slot populations have to adopt at least the ACPI path and ACPI replacments implemented in each specfic file. 
+This X299 System SSDT Github repository constitutes a set of motherboard and PCIe-Slot specific system SSDTs for the ASUS Prime X299 Deluxe. Users of different motherboards and/or different PCIe-Slot populations have to adopt at least the ACPI path and ACPI replacments implemented in each specfic file. 
 
 How to do so, is explained wihtin this small and basic guideline:
 http://kgp-hackintosh-corner.com/how-to-create-or-modify-a-simple-system-ssdt-aml-by-means-of-dsdt-and-ioreg-acpi-information
