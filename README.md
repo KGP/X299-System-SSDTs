@@ -10,10 +10,12 @@ http://kgp-hackintosh-corner.com/how-to-create-or-modify-a-simple-system-ssdt-am
 In general it is recommended to directly use or modify/adopt the ready-to-use AML files under "Distribution".
 
 However it is also possible to downlaod a DSL version of the respective AML files under "Sources"
-and to subseqeuntly execute the `Compile.command` from terminal; However, compilation errors (DSL to AML conversion errors) induced by the MaciASL compiler cannot be excluded in this case. 
+and to subseqeuntly execute the `Compile.command` from terminal; However, compilation errors (DSL to AML conversion errors) induced by the MaciASL compiler cannot be excluded in this case.
+
+Note that I am also currently adding some system SSDTs for the ASUS WS X299 Sage 10G, which can be accessed from the respective subdirectory (See also README.MD conained therein). 
 
 
-## SSDTs
+## ASUS Prime X299 Deluxe SSDTs
 
 Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 
