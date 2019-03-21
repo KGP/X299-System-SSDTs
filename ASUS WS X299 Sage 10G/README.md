@@ -14,7 +14,7 @@ Collection of X299 System `SSDTs` for the ASUS WS X299 Sage 10G.
 | `SSDT-X299-XHC.aml` | On-board ASN3142#1, ASN3142#2 USB3.1 extensible Host Controller XHC1, XHC2 implementation |
 | `SSDT-X299-ETH.aml` | On-board 2x Intel X550-AT2 10GB NIC controlller PCI implementation |
 | `SSDT-X299-TB3HP.aml` | GC-Titan Ridge/GC-Alpine Ridge/ASUS TBEX 3 TB3/USB-C Hotplug Injector Slot-2 PCI implementation |
-| `SSDT-X299-Slot5-PC01-BR1A-SL01-Vega64.aml` | AMD Radeon RX Vega Frontier PCIe Slot-5 GFX0 and HDAU PCI implementation |
+| `SSDT-X299-Slot5-PC01-BR1A-SL01-Vega64.aml` | AMD Radeon RX Vega 64 PCIe Slot-5 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-Slot1-Slot3-PC02-BR2A-SL05-ANS-ARPT.aml` |  Slot-1 ANS1 NVME controller and Slot-3 ARPT OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Adapter PCI implementation |
 | `SSDT-DTPG.aml` | DTPG PCI implementation (required for all `SSDTs` listed above) |
 
