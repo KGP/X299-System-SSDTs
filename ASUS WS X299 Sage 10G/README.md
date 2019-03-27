@@ -15,7 +15,8 @@ Collection of X299 System `SSDTs` for the ASUS WS X299 Sage 10G.
 | `SSDT-X299-ETH.aml` | On-board 2x Intel X550-AT2 10GB NIC controlller PCI implementation |
 | `SSDT-X299-TB3HP.aml` | GC-Titan Ridge/GC-Alpine Ridge/ASUS TBEX 3 TB3/USB-C Hotplug Injector Slot-2 PCI implementation |
 | `SSDT-X299-Slot5-PC01-BR1A-SL01-Vega64.aml` | AMD Radeon RX Vega 64 PCIe Slot-5, PC01.BR1A.SL01, PCI bridge @10 GFX0 and HDAU PCI implementation. Be careful though, the implemented OC load table is for a water blocked Nitro+ RX Vega 64 and should not be used for any Vegas with air flow fan cooling. Latter users should implement the load table from  SSDT-X299-Vega64.aml for the ASUS Prime X299 Deluxe or generate their own GPU load table suited for their respective Vega 64 hardware implementation. |
-| `SSDT-X299-Slot1-Slot3-PC02-BR2A-SL05-ANS-ARPT.aml` |  Slot-1 ANS3 NVME controller and Slot-3 ARPT OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Adapter PCI implementation |
+| `SSDT-X299-Slot5-PC01-BR1A-SL01-Radeon-VII.aml` | preliminary AMD Radeon VII PCIe Slot-5, PC01.BR1A.SL01, PCI bridge @10 GFX0 and HDAU PCI implementation.
+| `SSDT-X299-Slot1-Slot3-PC02-BR2A-SL05-ANS-ARPT.aml` |  Slot-1 ANS3 NVME controller and Slot-3 ARPT OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Adapter PCI implementation | 
 | `SSDT-DTPG.aml` | DTPG PCI implementation (required for all `SSDTs` listed above) |
 
 Note that any devices in respective PCIe slots on the ASUS WS X299 Sage 10G sharing the same PCI device at different PCI bridges, like PC02.BR2A.SL05 in case of the ANS1 NVME controller in Slot-1 (PCI bridge @10) and in case of the ARPT OSXWIFI Broadcom BCM94360CD BT/WIFI PCIe Adapter in Slot-3 (PCI bridge @08), need to be implemented in the same system SSDT, like in case of `SSDT-X299-Slot1-Slot3-PC02-BR2A-SL05-ANS-ARPT.aml`.
