@@ -30,7 +30,7 @@ Collection of X299 System `SSDTs` for the ASUS Prime X299 Deluxe.
 | `SSDT-X299-XHCI.aml` | On-board ASM1074 USB3.0 extensible Host Controller XHCI PCI implementation |
 | `SSDT-X299-XHC.aml` | On-board ASN3142#1, ASN3142#2 and ASN3142#3 USB3.1 extensible Host Controller XHC2, XHC3 and XHC4 PCI implementation |
 | `SSDT-X299-ETH.aml` | On-board Intel I219V2 and I211VA 1GB NIC controlller PCI implementation |
-| `SSDT-X299-Radeon-VII.aml` | interim AMD Radeon VII PCIe Slot-1 GFX0 and HDAU PCI implementation |
+| `SSDT-X299-RadeonVII-WEGVII.aml` | Interim AMD Radeon VII PCIe Slot-1 GFX0 and HDAU PCI implementation for use with modified Whatevergreen Source Code distrubution also considering Radeon VII|
 | `SSDT-X299-Vega-Frontier.aml` | AMD Radeon RX Vega Frontier PCIe Slot-1 GFX0 and HDAU PCI implementation |
 | `SSDT-X299-Vega64.aml` | AMD Radeon RX Vega 64 PCIe Slot-1 GFX0 and HDAU PCI implementation (Sapphire Nitro+ RX Vega 64)  |
 | `SSDT-X299-Vega56.aml` | AMD Radeon RX Vega 56 PCIe Slot-1 GFX0 and HDAU PCI implementation (MSI RX VEGA 56 Air Boost OC |
